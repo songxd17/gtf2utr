@@ -1,0 +1,9 @@
+##gff-version 2
+##source: GTF UTR Processor
+##description: Processed GTF with classified UTRs
+chr1	processed	CDS	1100	1200	.	+	0	gene_id "ENSG00000001"; transcript_id "ENST00000001"; gene_type "protein_coding"; gene_name "GENE1"; transcript_type "protein_coding";
+chr1	processed	CDS	1500	1700	.	+	1	gene_id "ENSG00000001"; transcript_id "ENST00000001"; gene_type "protein_coding"; gene_name "GENE1"; transcript_type "protein_coding";
+chr1	processed	CDS	2500	2800	.	+	2	gene_id "ENSG00000001"; transcript_id "ENST00000001"; gene_type "protein_coding"; gene_name "GENE1"; transcript_type "protein_coding";
+chr1	processed	CDS	5200	5500	.	-	0	gene_id "ENSG00000002"; transcript_id "ENST00000002"; gene_type "protein_coding"; gene_name "GENE2"; transcript_type "protein_coding";
+chr1	processed	CDS	6000	6200	.	-	1	gene_id "ENSG00000002"; transcript_id "ENST00000002"; gene_type "protein_coding"; gene_name "GENE2"; transcript_type "protein_coding";
+chr1	processed	CDS	6500	6800	.	-	2	gene_id "ENSG00000002"; transcript_id "ENST00000002"; gene_type "protein_coding"; gene_name "GENE2"; transcript_type "protein_coding";

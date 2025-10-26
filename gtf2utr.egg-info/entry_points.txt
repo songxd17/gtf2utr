@@ -1,0 +1,4 @@
+[console_scripts]
+gtf2utr = gtf2utr.cli:main
+gtf2utr-extract = gtf2utr.cli:extract_utrs
+gtf2utr-process = gtf2utr.cli:process_gtf

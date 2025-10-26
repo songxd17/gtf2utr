@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+gtf2utr/__init__.py
+gtf2utr/cli.py
+gtf2utr/gtf_processor.py
+gtf2utr/utr_extractor.py
+gtf2utr.egg-info/PKG-INFO
+gtf2utr.egg-info/SOURCES.txt
+gtf2utr.egg-info/dependency_links.txt
+gtf2utr.egg-info/entry_points.txt
+gtf2utr.egg-info/not-zip-safe
+gtf2utr.egg-info/requires.txt
+gtf2utr.egg-info/top_level.txt
+tests/test_gtf_processor.py
+tests/test_utr_extractor.py

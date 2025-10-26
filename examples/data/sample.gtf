@@ -1,0 +1,20 @@
+##description: sample GTF file for gtf2utr testing
+##provider: gtf2utr
+##format: gtf
+##date: 2024-01-01
+chr1	HAVANA	gene	1000	3000	.	+	.	gene_id "ENSG00000001"; gene_name "GENE1"; gene_type "protein_coding";
+chr1	HAVANA	transcript	1000	3000	.	+	.	gene_id "ENSG00000001"; gene_name "GENE1"; transcript_id "ENST00000001"; transcript_name "GENE1-001"; transcript_type "protein_coding";
+chr1	HAVANA	exon	1000	1200	.	+	.	gene_id "ENSG00000001"; gene_name "GENE1"; transcript_id "ENST00000001"; transcript_name "GENE1-001"; exon_number "1"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	CDS	1100	1200	.	+	0	gene_id "ENSG00000001"; gene_name "GENE1"; transcript_id "ENST00000001"; transcript_name "GENE1-001"; exon_number "1"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	exon	1500	1700	.	+	.	gene_id "ENSG00000001"; gene_name "GENE1"; transcript_id "ENST00000001"; transcript_name "GENE1-001"; exon_number "2"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	CDS	1500	1700	.	+	1	gene_id "ENSG00000001"; gene_name "GENE1"; transcript_id "ENST00000001"; transcript_name "GENE1-001"; exon_number "2"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	exon	2500	3000	.	+	.	gene_id "ENSG00000001"; gene_name "GENE1"; transcript_id "ENST00000001"; transcript_name "GENE1-001"; exon_number "3"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	CDS	2500	2800	.	+	2	gene_id "ENSG00000001"; gene_name "GENE1"; transcript_id "ENST00000001"; transcript_name "GENE1-001"; exon_number "3"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	gene	5000	7000	.	-	.	gene_id "ENSG00000002"; gene_name "GENE2"; gene_type "protein_coding";
+chr1	HAVANA	transcript	5000	7000	.	-	.	gene_id "ENSG00000002"; gene_name "GENE2"; transcript_id "ENST00000002"; transcript_name "GENE2-001"; transcript_type "protein_coding";
+chr1	HAVANA	exon	5000	5500	.	-	.	gene_id "ENSG00000002"; gene_name "GENE2"; transcript_id "ENST00000002"; transcript_name "GENE2-001"; exon_number "1"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	CDS	5200	5500	.	-	0	gene_id "ENSG00000002"; gene_name "GENE2"; transcript_id "ENST00000002"; transcript_name "GENE2-001"; exon_number "1"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	exon	6000	6200	.	-	.	gene_id "ENSG00000002"; gene_name "GENE2"; transcript_id "ENST00000002"; transcript_name "GENE2-001"; exon_number "2"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	CDS	6000	6200	.	-	1	gene_id "ENSG00000002"; gene_name "GENE2"; transcript_id "ENST00000002"; transcript_name "GENE2-001"; exon_number "2"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	exon	6500	7000	.	-	.	gene_id "ENSG00000002"; gene_name "GENE2"; transcript_id "ENST00000002"; transcript_name "GENE2-001"; exon_number "3"; gene_type "protein_coding"; transcript_type "protein_coding";
+chr1	HAVANA	CDS	6500	6800	.	-	2	gene_id "ENSG00000002"; gene_name "GENE2"; transcript_id "ENST00000002"; transcript_name "GENE2-001"; exon_number "3"; gene_type "protein_coding"; transcript_type "protein_coding";
