@@ -136,21 +136,6 @@ cd examples
 python run_example.py
 ```
 
-## Testing
-
-Run the test suite:
-
-```bash
-# Install test dependencies
-pip install -e .[dev]
-
-# Run tests
-pytest tests/
-
-# Run tests with coverage report
-pytest --cov=gtf2utr tests/
-```
-
 
 ## License
 
