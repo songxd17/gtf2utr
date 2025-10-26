@@ -6,14 +6,7 @@
 
 A Python package for extracting UTR sequences from GTF and FASTA files.
 
-## Features
 
-- 🧬 **GTF File Processing**: Parse GTF files and correctly classify 5'UTR and 3'UTR based on CDS positions
-- 🔍 **Sequence Extraction**: Extract UTR sequences from reference genome FASTA files
-- 🧵 **Strand Handling**: Correctly handle sequence orientation for both forward and reverse strands
-- 📊 **Detailed Metadata**: Output FASTA headers containing length, strand, gene information, and coordinate ranges
-- 🗜️ **Compressed File Support**: Support for gzip-compressed GTF and FASTA files
-- ⚡ **Efficient Processing**: Optimized algorithms for handling large genomic datasets
 
 ## Installation
 
