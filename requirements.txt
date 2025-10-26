@@ -1,0 +1,16 @@
+# gtf2utr requirements
+# 
+# Core dependencies for gtf2utr package
+# This package uses only Python standard library modules
+# No external dependencies are required for basic functionality
+
+# Development dependencies (optional)
+# Uncomment the following lines if you want to install development tools:
+#
+# pytest>=6.0              # Testing framework
+# pytest-cov>=2.0          # Coverage testing
+# black>=21.0               # Code formatting
+# flake8>=3.8               # Code linting
+# mypy>=0.800               # Type checking
+# sphinx>=4.0               # Documentation generation
+# sphinx-rtd-theme>=0.5     # Documentation theme

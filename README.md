@@ -1,2 +1,230 @@
 # gtf2utr
-​Extraction of transcript UTR sequences based on reference genome annotations.​​
+
+[![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://badge.fury.io/py/gtf2utr.svg)](https://badge.fury.io/py/gtf2utr)
+
+A Python package for extracting UTR sequences from GTF and FASTA files.
+
+## Features
+
+- 🧬 **GTF File Processing**: Parse GTF files and correctly classify 5'UTR and 3'UTR based on CDS positions
+- 🔍 **Sequence Extraction**: Extract UTR sequences from reference genome FASTA files
+- 🧵 **Strand Handling**: Correctly handle sequence orientation for both forward and reverse strands
+- 📊 **Detailed Metadata**: Output FASTA headers containing length, strand, gene information, and coordinate ranges
+- 🗜️ **Compressed File Support**: Support for gzip-compressed GTF and FASTA files
+- ⚡ **Efficient Processing**: Optimized algorithms for handling large genomic datasets
+
+## Installation
+
+### Install from PyPI (Recommended)
+
+```bash
+pip install gtf2utr
+```
+
+### Install from Source
+
+```bash
+git clone https://github.com/yourusername/gtf2utr.git
+cd gtf2utr
+pip install -e .
+```
+
+## Quick Start
+
+### Command Line Usage
+
+#### 1. Complete Pipeline (Recommended)
+
+```bash
+# Run the complete GTF processing and UTR extraction pipeline
+gtf2utr pipeline input.gtf.gz reference.fa.gz output_utrs.fa
+```
+
+#### 2. Step-by-Step Execution
+
+```bash
+# Step 1: Process GTF file and classify UTR regions
+gtf2utr process input.gtf.gz processed_utrs.gtf
+
+# Step 2: Extract UTR sequences from reference genome
+gtf2utr extract processed_utrs.gtf reference.fa.gz output_utrs.fa
+```
+
+#### 3. Individual Commands
+
+```bash
+# Process GTF file only
+gtf2utr-process input.gtf.gz processed_utrs.gtf
+
+# Extract UTR sequences only
+gtf2utr-extract processed_utrs.gtf reference.fa.gz output_utrs.fa
+```
+
+### Python API Usage
+
+```python
+from gtf2utr import GTFProcessor, UTRExtractor
+
+# Process GTF file
+processor = GTFProcessor('input.gtf.gz', 'processed_utrs.gtf')
+processor.process()
+
+# Extract UTR sequences
+extractor = UTRExtractor()
+extractor.process('processed_utrs.gtf', 'reference.fa.gz', 'output_utrs.fa')
+
+# Get statistics
+stats = extractor.get_statistics()
+print(f"Transcripts processed: {stats['transcripts_processed']}")
+print(f"Sequences extracted: {stats['sequences_extracted']}")
+```
+
+## Input File Formats
+
+### GTF Files
+
+Supports standard GTF format files containing the following features:
+- `exon`: Exon regions
+- `CDS`: Coding sequence regions
+- `UTR`, `five_prime_utr`, `three_prime_utr`: UTR regions
+
+Example:
+```
+chr1    HAVANA  exon    11869   12227   .       +       .       gene_id "ENSG00000223972"; transcript_id "ENST00000456328";
+chr1    HAVANA  UTR     11869   12227   .       +       .       gene_id "ENSG00000223972"; transcript_id "ENST00000456328";
+```
+
+### FASTA Files
+
+Standard genomic FASTA files supporting multiple chromosomes:
+```
+>chr1
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+>chr2
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+```
+
+## Output Format
+
+The output FASTA file contains detailed sequence information:
+
+```
+>ENST00000456328_5UTR length=358 strand=+ gene=ENSG00000223972|DDX11L1 range=chr1:11869-12227
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+>ENST00000456328_3UTR length=1021 strand=+ gene=ENSG00000223972|DDX11L1 range=chr1:12613-13221;chr1:13453-13670
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+```
+
+Header information includes:
+- `transcript_id_UTRtype`: Transcript ID and UTR type (5UTR or 3UTR)
+- `length`: Total UTR sequence length
+- `strand`: Strand direction (+ or -)
+- `gene`: Gene ID and gene name
+- `range`: Genomic coordinate ranges (multiple regions separated by semicolons)
+
+## How It Works
+
+### 1. GTF Processing Stage
+
+1. **Parse GTF File**: Read exon, UTR, and CDS information from protein_coding genes
+2. **UTR Classification**: Re-classify UTRs based on CDS position and strand direction:
+   - Forward strand (+): 5'UTR upstream of CDS, 3'UTR downstream of CDS
+   - Reverse strand (-): 5'UTR downstream of CDS, 3'UTR upstream of CDS
+3. **Coordinate Adjustment**: Handle UTR regions that span CDS boundaries
+4. **Output Processed GTF**: Generate GTF file with correctly classified UTRs
+
+### 2. Sequence Extraction Stage
+
+1. **Load Reference Genome**: Read FASTA file into memory
+2. **Parse UTR Annotations**: Extract UTR coordinates from processed GTF file
+3. **Sequence Extraction**: Extract sequences from reference genome based on coordinates
+4. **Strand Processing**: Perform reverse complement for negative strand sequences
+5. **Sequence Concatenation**: Concatenate multiple UTR regions of the same transcript in correct order
+6. **Generate FASTA**: Output FASTA file with detailed metadata
+
+## Example Data
+
+Example data and usage scripts are provided in the `examples/` directory:
+
+```bash
+# Run example
+cd examples
+python run_example.py
+```
+
+## Testing
+
+Run the test suite:
+
+```bash
+# Install test dependencies
+pip install -e .[dev]
+
+# Run tests
+pytest tests/
+
+# Run tests with coverage report
+pytest --cov=gtf2utr tests/
+```
+
+## Performance Optimization Tips
+
+1. **Memory Usage**: For large genomes, ensure sufficient memory to load FASTA files
+2. **File Format**: Use gzip compression to reduce disk I/O time
+3. **Parallel Processing**: For multiple samples, run multiple processes in parallel
+
+## Frequently Asked Questions
+
+### Q: Which species genomes are supported?
+A: Supports any genome annotation files that conform to GTF format standards, including human, mouse, fly, etc.
+
+### Q: How to handle large genome files?
+A: Ensure the system has sufficient memory. For human genome (~3GB), at least 8GB memory is recommended.
+
+### Q: Do the output UTR sequences consider alternative splicing?
+A: Yes, UTR sequences for each transcript are extracted independently, preserving alternative splicing information.
+
+### Q: How to verify that the extracted sequences are correct?
+A: You can use genome browsers (such as IGV) to compare the extracted sequence coordinates and orientations.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Citation
+
+If you use gtf2utr in your research, please cite:
+
+```
+gtf2utr: A Python package for extracting UTR sequences from GTF and FASTA files
+GitHub: https://github.com/yourusername/gtf2utr
+```
+
+## Contact
+
+- Project homepage: https://github.com/yourusername/gtf2utr
+- Issue tracker: https://github.com/yourusername/gtf2utr/issues
+- Email: contact@gtf2utr.org
+
+## Changelog
+
+### v1.0.0 (2024-10-26)
+- Initial release
+- Support for GTF file processing and UTR classification
+- Support for extracting UTR sequences from reference genome
+- Provide command line tools and Python API
+- Support for gzip compressed files
+- Detailed FASTA header metadata
